@@ -9,7 +9,17 @@ const createStore = () => {
       articles: [
       ]
     }),
+    getters: {
+      getArticles: (state) => {
+        return state.articles
+      }
+    },
     actions: {
+      async fetchArticles({ commit }){
+        await axios.get(url).then(response => {
+          commit('setArticle', response.data)
+        })
+      },
       async postArticle({ commit }, article){
         await axios.post(url, article).then(response => {
           commit('addArticle', response.data)
@@ -18,6 +28,7 @@ const createStore = () => {
     },
     mutations: {
       addArticle: (state, article) => state.articles.push(article),
+      setArticle: (state, article) => state.articles = article,
     }
   })
 }
