@@ -1,5 +1,10 @@
 class Api::V1::ArticlesController < ApplicationController
 
+  def index
+    articles = Article.all
+    render json: articles
+  end
+
   def create
     article = current_user.articles.build(article_params)
     if  article.save
