@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :articles do
         mount_devise_token_auth_for 'User', at: 'auth'
-        resource :likes, only: [:create]
+        resource :likes, only: [:create, :destroy]
       end
     end
   end
