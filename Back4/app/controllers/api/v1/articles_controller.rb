@@ -2,14 +2,17 @@ class Api::V1::ArticlesController < ApplicationController
   before_action :set_article , only:[:destroy]
 
   def index
-    articles = Article.all
-    render json: articles
+    articles = Article.all.map do |article|
+      article.likes_count = article.likes.count
+      article
+    end
+    render json: articles.to_json(methods: [:likes_count])
   end
 
   def create
     article = current_user.articles.build(article_params)
     if  article.save
-      render json: article
+      render json: article.to_json(methods: [:likes_count])
     else
       render json:article.errors, status: 422
     end
