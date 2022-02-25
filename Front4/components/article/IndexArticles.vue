@@ -9,16 +9,19 @@
       <label>中身</label>
       <li>{{ article.body }}</li>
       <DeleteArticle :id="article.id"/>
+      <AddLike :id="article.id"/>
     </ul>
   </div>
 </template>
 
 <script>
 import DeleteArticle from "./DeleteArticle.vue";
+import AddLike from "./AddLike.vue";
 import { mapActions, mapGetters } from 'vuex';
 export default {
   components: {
-    DeleteArticle
+    DeleteArticle,
+    AddLike
   },
   computed: {
     ...mapGetters(['getArticles']),
