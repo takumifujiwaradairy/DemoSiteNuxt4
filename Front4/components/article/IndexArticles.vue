@@ -8,6 +8,8 @@
       <li>{{ article.title }}</li>
       <label>中身</label>
       <li>{{ article.body }}</li>
+      <label>LIKEの合計</label>
+      <li>{{ article.likes_count }}</li>
       <DeleteArticle :id="article.id"/>
       <AddLike :id="article.id"/>
     </ul>
