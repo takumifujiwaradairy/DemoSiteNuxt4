@@ -24,11 +24,20 @@ const createStore = () => {
         await axios.post(url, article).then(response => {
           commit('addArticle', response.data)
         })
+      },
+      async deleteArticle({ commit }, id){
+        await axios.delete(`${url}/${id}`).then(response => {
+          commit('removeArticle', response.data)
+        })
       }
     },
     mutations: {
       addArticle: (state, article) => state.articles.push(article),
       setArticle: (state, article) => state.articles = article,
+      removeArticle: (state, id) => {
+        const index = state.articles.findIndex((article) => article.id === id);
+        state.articles.splice(index, 1);
+      }
     }
   })
 }
