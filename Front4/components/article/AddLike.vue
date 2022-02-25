@@ -1,6 +1,7 @@
 <template>
   <div>
     <button @click="addLike(id)">LIKE</button>
+    <button @click="disLike(id)">DISLIKE</button>
   </div>
 </template>
 
@@ -9,7 +10,7 @@ import { mapActions } from 'vuex';
 export default {
   props: ['id'],
   methods: {
-    ...mapActions(['addLike'])
+    ...mapActions(['addLike', 'disLike'])
   }
 }
 </script>
